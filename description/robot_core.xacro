@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+
+  <xacro:include filename="interial_macros.xacro"/>
+
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+
+  <!-- ================= BASE LINK ================= -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.055"/>
+      <geometry>
+        <box size="0.25 0.18 0.05"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.6 0.6 0.6 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0.055"/>
+      <geometry>
+        <box size="0.25 0.18 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= LEFT WHEEL ================= -->
+  <link name="left_wheel">
+    <visual>
+      <origin rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.02"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin xyz="-0.04 0.09 0.03"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- ================= RIGHT WHEEL ================= -->
+  <link name="right_wheel">
+    <visual>
+      <origin rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.02"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin xyz="-0.04 -0.09 0.03"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- ================= CASTER WHEEL ================= -->
+  <link name="caster_wheel">
+    <visual>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+      <material name="dark_gray">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_wheel"/>
+    <origin xyz="0.11 0 0.02"/>
+  </joint>
+
+  <!-- ================= FRONT ULTRASONIC ================= -->
+  <link name="ultrasonic_front">
+    <visual>
+      <geometry>
+        <box size="0.04 0.02 0.02"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.04 0.02 0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="ultrasonic_front_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ultrasonic_front"/>
+    <origin xyz="0.13 0 0.10"/>
+  </joint>
+
+  <!-- ================= LEFT ULTRASONIC ================= -->
+  <link name="ultrasonic_left">
+    <visual>
+      <geometry>
+        <box size="0.04 0.02 0.02"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.04 0.02 0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="ultrasonic_left_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ultrasonic_left"/>
+    <origin xyz="0 0.11 0.10" rpy="0 0 1.5708"/>
+  </joint>
+
+  <!-- ================= RIGHT ULTRASONIC ================= -->
+  <link name="ultrasonic_right">
+    <visual>
+      <geometry>
+        <box size="0.04 0.02 0.02"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.04 0.02 0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="ultrasonic_right_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ultrasonic_right"/>
+    <origin xyz="0 -0.11 0.10" rpy="0 0 -1.5708"/>
+  </joint>
+
+</robot>
