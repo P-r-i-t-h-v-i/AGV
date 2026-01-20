@@ -1,26 +1,22 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
 
-  <xacro:include filename="interial_macros.xacro"/>
+  <!-- ===== INCLUDE INERTIAL MACROS ===== -->
+  <xacro:include filename="inertial_macros.xacro"/>
 
-  <material name="black">
-    <color rgba="0 0 0 1"/>
-  </material>
+  <!-- ===== MATERIALS ===== -->
+  <material name="black"><color rgba="0 0 0 1"/></material>
+  <material name="blue"><color rgba="0 0 1 1"/></material>
+  <material name="gray"><color rgba="0.6 0.6 0.6 1"/></material>
 
-  <material name="blue">
-    <color rgba="0 0 1 1"/>
-  </material>
-
-  <!-- ================= BASE LINK ================= -->
+  <!-- ================= BASE ================= -->
   <link name="base_link">
     <visual>
       <origin xyz="0 0 0.055"/>
       <geometry>
         <box size="0.25 0.18 0.05"/>
       </geometry>
-      <material name="gray">
-        <color rgba="0.6 0.6 0.6 1"/>
-      </material>
+      <material name="gray"/>
     </visual>
 
     <collision>
@@ -29,6 +25,8 @@
         <box size="0.25 0.18 0.05"/>
       </geometry>
     </collision>
+
+    <xacro:inertial_box mass="3.0" x="0.25" y="0.18" z="0.05"/>
   </link>
 
   <!-- ================= LEFT WHEEL ================= -->
@@ -47,6 +45,8 @@
         <cylinder radius="0.03" length="0.02"/>
       </geometry>
     </collision>
+
+    <xacro:inertial_cylinder mass="0.3" r="0.03" h="0.02"/>
   </link>
 
   <joint name="left_wheel_joint" type="continuous">
@@ -72,6 +72,8 @@
         <cylinder radius="0.03" length="0.02"/>
       </geometry>
     </collision>
+
+    <xacro:inertial_cylinder mass="0.3" r="0.03" h="0.02"/>
   </link>
 
   <joint name="right_wheel_joint" type="continuous">
@@ -81,22 +83,19 @@
     <axis xyz="0 1 0"/>
   </joint>
 
-  <!-- ================= CASTER WHEEL ================= -->
+  <!-- ================= CASTER ================= -->
   <link name="caster_wheel">
     <visual>
-      <geometry>
-        <sphere radius="0.02"/>
-      </geometry>
-      <material name="dark_gray">
-        <color rgba="0.3 0.3 0.3 1"/>
-      </material>
+      <geometry><sphere radius="0.02"/></geometry>
+      <material name="black"/>
     </visual>
 
     <collision>
-      <geometry>
-        <sphere radius="0.02"/>
-      </geometry>
+      <geometry><sphere radius="0.02"/></geometry>
+      <material name="black"/>
     </collision>
+
+    <xacro:inertial_sphere mass="0.1" r="0.02"/>
   </link>
 
   <joint name="caster_joint" type="fixed">
@@ -105,20 +104,11 @@
     <origin xyz="0.11 0 0.02"/>
   </joint>
 
-  <!-- ================= FRONT ULTRASONIC ================= -->
+  <!-- ================= ULTRASONIC SENSORS ================= -->
   <link name="ultrasonic_front">
-    <visual>
-      <geometry>
-        <box size="0.04 0.02 0.02"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-
-    <collision>
-      <geometry>
-        <box size="0.04 0.02 0.02"/>
-      </geometry>
-    </collision>
+    <visual><geometry><box size="0.04 0.02 0.02"/></geometry></visual>
+    <collision><geometry><box size="0.04 0.02 0.02"/></geometry></collision>
+    <xacro:inertial_box mass="0.05" x="0.04" y="0.02" z="0.02"/>
   </link>
 
   <joint name="ultrasonic_front_joint" type="fixed">
@@ -127,20 +117,10 @@
     <origin xyz="0.13 0 0.10"/>
   </joint>
 
-  <!-- ================= LEFT ULTRASONIC ================= -->
   <link name="ultrasonic_left">
-    <visual>
-      <geometry>
-        <box size="0.04 0.02 0.02"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-
-    <collision>
-      <geometry>
-        <box size="0.04 0.02 0.02"/>
-      </geometry>
-    </collision>
+    <visual><geometry><box size="0.04 0.02 0.02"/></geometry></visual>
+    <collision><geometry><box size="0.04 0.02 0.02"/></geometry></collision>
+    <xacro:inertial_box mass="0.05" x="0.04" y="0.02" z="0.02"/>
   </link>
 
   <joint name="ultrasonic_left_joint" type="fixed">
@@ -149,20 +129,10 @@
     <origin xyz="0 0.11 0.10" rpy="0 0 1.5708"/>
   </joint>
 
-  <!-- ================= RIGHT ULTRASONIC ================= -->
   <link name="ultrasonic_right">
-    <visual>
-      <geometry>
-        <box size="0.04 0.02 0.02"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-
-    <collision>
-      <geometry>
-        <box size="0.04 0.02 0.02"/>
-      </geometry>
-    </collision>
+    <visual><geometry><box size="0.04 0.02 0.02"/></geometry></visual>
+    <collision><geometry><box size="0.04 0.02 0.02"/></geometry></collision>
+    <xacro:inertial_box mass="0.05" x="0.04" y="0.02" z="0.02"/>
   </link>
 
   <joint name="ultrasonic_right_joint" type="fixed">
