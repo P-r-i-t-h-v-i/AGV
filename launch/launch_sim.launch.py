@@ -40,7 +40,11 @@ def generate_launch_description():
         executable='rviz2',
         name='rviz2',
         output='screen' )
-
+    node_gazebo = Node(
+        package='gazebo_ros',
+        executable='gazebo',
+        name='gazebo',
+        output='screen' )
 
     # Launch!
     return LaunchDescription([
@@ -51,5 +55,6 @@ def generate_launch_description():
 
         node_robot_state_publisher,
         node_joint_state_publisher,
-        node_rviz2
+        node_rviz2,
+        node_gazebo,
     ])
